@@ -12,7 +12,9 @@ namespace token
 		// that can be taken out of the list from the back
 		typedef list<IToken*> TPostfix_tokens;
 
-		virtual int Evaluate(TPostfix_tokens &) = 0;
+		// each token type takes its needed operands from the back of
+		// remaining_tokens and calculates the actual value
+		virtual int Evaluate(TPostfix_tokens &remaining_tokens) = 0;
 	};
 
 	class TokenNumber : public IToken
@@ -21,7 +23,8 @@ namespace token
 		TokenNumber() : value_(0) {};
 		TokenNumber(int value) : value_(value) {};
 
-		virtual int Evaluate(TPostfix_tokens &) override { return value_; }
+		// numbers don't have additional operands, just return the value_
+		virtual int Evaluate(TPostfix_tokens &remaining_tokens) override { return value_; }
 	protected:
 		int value_;
 	};
@@ -41,6 +44,7 @@ namespace token
 		TokenOperator() :type_(kPlus), precedence_(0) {};
 		TokenOperator(TokenOperator &other) : type_(other.type_), precedence_(other.precedence_) {};
 
+		// operators always remove two operands from the back
 		virtual int Evaluate(TPostfix_tokens &remaining_tokens) override;
 
 		TokenType GetTokenType() { return type_; }
