@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <string>
+#include <map>
 
 #include "token.h"
 
@@ -11,12 +12,20 @@ namespace calculator
 	class Calculator
 	{
 	public:
+		Calculator();
+		~Calculator();
+
 		int Calculate(string sInput);
 
 	protected:
 		bool Parse(string &input);
 		int Evaluate();
 
-		IToken::TPostfix_tokens tokentree_;
+		// holds all the parsed token in postfix order
+		token::IToken::TPostfix_tokens tokentree_;
+
+		// a map of supported operators for easy lookup
+		std::map<char, token::TokenOperator*> operators_;
+
 	};
 }

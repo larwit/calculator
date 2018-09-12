@@ -15,4 +15,11 @@ TEST_CASE("Given tests", "[assigned]") {
 TEST_CASE("Additional tests", "[additional]") {
 	calculator::Calculator c;
 	REQUIRE(c.Calculate("7") == 7);
+	REQUIRE(c.Calculate("7+7") == 14);
+	REQUIRE(c.Calculate("9-7") == 2);
+	REQUIRE(c.Calculate("7*7") == 49);
+	REQUIRE(c.Calculate("8/4") == 2);
+	REQUIRE_THROWS(c.Calculate("1/0"));
+	REQUIRE_THROWS(c.Calculate("a-1"));
+	REQUIRE_THROWS(c.Calculate("1**2"));
 }
