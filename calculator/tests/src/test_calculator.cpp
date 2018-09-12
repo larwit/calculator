@@ -22,4 +22,5 @@ TEST_CASE("Additional tests", "[additional]") {
 	REQUIRE_THROWS(c.Calculate("1/0"));
 	REQUIRE_THROWS(c.Calculate("a-1"));
 	REQUIRE_THROWS(c.Calculate("1**2"));
+	REQUIRE_THROWS(c.Calculate("1-(-10)"));
 }

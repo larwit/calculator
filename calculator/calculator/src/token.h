@@ -33,7 +33,9 @@ namespace token
 			kPlus,
 			kMinus,
 			kMultiply,
-			kDivide
+			kDivide,
+			kBracketsOpen,
+			kBracketsClose
 		};
 
 		TokenOperator() :type_(kPlus), precedence_(0) {};
@@ -68,6 +70,18 @@ namespace token
 	{
 	public:
 		TokenOperatorDivide() { type_ = kDivide; precedence_ = 2; };
+	};
+
+	class TokenBracketsOpen : public TokenOperator
+	{
+	public:
+		TokenBracketsOpen() { type_ = kBracketsOpen; precedence_ = 0; };
+	};
+
+	class TokenBracketsClose : public TokenOperator
+	{
+	public:
+		TokenBracketsClose() { type_ = kBracketsClose; precedence_ = 0; };
 	};
 
 }
