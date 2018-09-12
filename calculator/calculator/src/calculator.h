@@ -2,12 +2,21 @@
 
 #include <string>
 
-using namespace std;
+#include "token.h"
 
-class Calculator
+using namespace std;
+namespace calculator
 {
-public:
-	int Calculate(string sInput) {
-		return 0;
-	}
-};
+
+	class Calculator
+	{
+	public:
+		int Calculate(string sInput);
+
+	protected:
+		bool Parse(string &input);
+		int Evaluate();
+
+		IToken::TPostfix_tokens tokentree_;
+	};
+}

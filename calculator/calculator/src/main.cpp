@@ -8,23 +8,23 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Calculator calc;
-	string sInput;
+	calculator::Calculator calc;
+	string input;
 	do
 	{
 		cout << "Please enter formula (empty input to quit):" << endl;
-		getline(cin, sInput);
-		if (sInput.empty())
+		getline(cin, input);
+		if (input.empty())
 			break;
 
 		try
 		{
-			auto result = calc.Calculate(sInput);
-			cout << "\"" << sInput << "\" = " << result << endl;
+			auto result = calc.Calculate(input);
+			cout << "\"" << input << "\" = " << result << endl;
 		}
 		catch (const exception& e)
 		{
-			cout << e.what() << "; original input: " << sInput << endl << endl;
+			cout << e.what() << "; original input: " << input << endl << endl;
 		}
-	} while (sInput.size() > 0);
+	} while (input.size() > 0);
 }
